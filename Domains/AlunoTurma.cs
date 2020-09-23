@@ -10,12 +10,12 @@ namespace EduX_API.Domains
     public class AlunoTurma
     {
         //PK
-       [Key]
-       public Guid IdAlunoTurma { get; set; }
-       public string Matricula { get; set; }
+        [Key]
+        public Guid IdAlunoTurma { get; set; }
+        public string Matricula { get; set; }
 
         /// <summary>
-        /// Criar novos Id
+        /// Define a classe aluno turma
         /// </summary>
         public AlunoTurma()
         {
@@ -31,5 +31,6 @@ namespace EduX_API.Domains
         public Guid IdTurma { get; set; }
         [ForeignKey("IdTurma")]
         public Turma Turma { get; set; }
+
     }
 }

@@ -33,5 +33,8 @@ namespace EduX_API.Domains
         public Guid IdPerfil { get; set; }
         [ForeignKey("IdPerfil")]
         public Perfil Perfil { get; set; }
+
+        public List<Curtida> Curtidas;
+        
     }
 }
