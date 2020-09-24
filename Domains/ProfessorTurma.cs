@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace EduX_API.Domains
 {
     public class ProfessorTurma
     {
+        [Key]
         //PK : ID PROFESSOR E DESCRIÇÃO
         public Guid IdProfessorTurma { get; set; }
         public string Descricao { get; set; }

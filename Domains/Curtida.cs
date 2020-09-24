@@ -9,24 +9,27 @@ namespace EduX_API.Domains
 {
     public class Curtida
     {
-        //Pk
+        //PK
         [Key]
         public Guid IdCurtida { get; set; }
 
+        /// <summary>
+        /// Criar novos ID's
+        /// </summary>
         public Curtida()
         {
             IdCurtida = Guid.NewGuid();
         }
 
-
         //IdUsuario : FK
         public Guid IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
-        public Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; } 
 
-        //IdUsuario : FK
+        //IdDica : FK
         public Guid IdDica { get; set; }
         [ForeignKey("IdDica")]
         public Dica Dica { get; set; }
+
     }
 }

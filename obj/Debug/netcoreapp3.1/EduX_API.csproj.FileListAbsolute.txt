@@ -55,3 +55,13 @@ C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.
 C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\EduX_API.deps.json
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\EduX_API.runtimeconfig.json
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\EduX_API.runtimeconfig.dev.json
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\EduX_API.dll
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\bin\Debug\netcoreapp3.1\EduX_API.pdb
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\obj\Debug\netcoreapp3.1\EduX_API.csproj.CoreCompileInputs.cache
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\obj\Debug\netcoreapp3.1\EduX_API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\obj\Debug\netcoreapp3.1\EduX_API.dll
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\obj\Debug\netcoreapp3.1\EduX_API.pdb
+C:\Users\fernanda1234\Desktop\API_Senai\API_EduX\EduX_API\obj\Debug\netcoreapp3.1\EduX_API.genruntimeconfig.cache

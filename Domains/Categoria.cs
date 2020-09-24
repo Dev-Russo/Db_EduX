@@ -13,6 +13,7 @@ namespace EduX_API.Domains
         //PK
         [Key]
         public Guid IdCategoria { get; set; }
+        [Required]
         public string Tipo { get; set; }
 
         /// <summary>

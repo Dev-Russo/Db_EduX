@@ -26,5 +26,7 @@ namespace EduX_API.Domains
         public Guid IdUsuario { get; set; }
         [ForeignKey("IdUsuario")]
         public Usuario Usuario { get; set; }
+
+        public List<Curtida> Curtidas { get; set; }
     }
 }

@@ -15,8 +15,11 @@ namespace EduX_API.Domains
         //PK
         [Key]
         public Guid IdUsuario { get; set; }
+        [Required]
         public string Nome { get; set; }
+        [Required]
         public string Email { get; set; }
+        [Required]
         public string Senha { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataUltimoAcesso { get; set; }
@@ -34,7 +37,6 @@ namespace EduX_API.Domains
         [ForeignKey("IdPerfil")]
         public Perfil Perfil { get; set; }
 
-        public List<Curtida> Curtidas;
-        
+       // public List<Curtida> Curtidas { get; set; }
     }
 }

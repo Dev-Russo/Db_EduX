@@ -12,6 +12,7 @@ namespace EduX_API.Domains
         //PK
         [Key]
         public Guid IdAlunoTurma { get; set; }
+        [Required]
         public string Matricula { get; set; }
 
         /// <summary>

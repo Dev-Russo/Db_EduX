@@ -14,6 +14,7 @@ namespace EduX_API.Domains
     {
         [Key]
         public Guid IdCurso { get; set; }
+        [Required]
         public string Titulo { get; set; }
 
         /// <summary>
