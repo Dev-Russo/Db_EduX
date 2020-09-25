@@ -7,18 +7,9 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class ProfessorTurma
+    public class ProfessorTurma : BaseDomain
     {
-        [Key]
-        //PK : ID PROFESSOR E DESCRIÇÃO
-        public Guid IdProfessorTurma { get; set; }
         public string Descricao { get; set; }
-
-        //CRIAR NOVOS ID AUTOMATICAMENTE
-        public ProfessorTurma()
-        {
-            IdProfessorTurma = Guid.NewGuid();
-        }
 
         //FK : ID USUARIO E ID TURMA
         public Guid IdUsuario { get; set; }

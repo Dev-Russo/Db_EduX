@@ -26,8 +26,6 @@ namespace EduX_API.Context
                 optionsBuilder.UseSqlServer(@"Data source=.\SQLEXPRESS;Initial Catalog=Db_EduX;user id=sa;password=sa132");
 
             base.OnConfiguring(optionsBuilder);
-            
-            // tenta o que te falei de adicionar o Using do List la no damains dica
 
         }
     }

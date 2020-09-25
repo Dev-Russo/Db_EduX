@@ -7,21 +7,11 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class AlunoTurma
+    public class AlunoTurma : BaseDomain
     {
         //PK
-        [Key]
-        public Guid IdAlunoTurma { get; set; }
         [Required]
         public string Matricula { get; set; }
-
-        /// <summary>
-        /// Define a classe aluno turma
-        /// </summary>
-        public AlunoTurma()
-        {
-            IdAlunoTurma = Guid.NewGuid();
-        }
 
         //FK : ID USUARIO E ID TURMA
 

@@ -10,11 +10,8 @@ namespace EduX_API.Domains
     /// <summary>
     /// Define a classe usuário
     /// </summary>
-    public class Usuario
+    public class Usuario : BaseDomain
     {
-        //PK
-        [Key]
-        public Guid IdUsuario { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
@@ -24,13 +21,6 @@ namespace EduX_API.Domains
         public DateTime DataCadastro { get; set; }
         public DateTime DataUltimoAcesso { get; set; }
 
-        /// <summary>
-        /// Criar novos ID's
-        /// </summary>
-        public Usuario()
-        {
-            IdUsuario = Guid.NewGuid();
-        }
 
         //FK : ID PERFIL
         public Guid IdPerfil { get; set; }

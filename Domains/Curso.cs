@@ -9,7 +9,7 @@ namespace EduX_API.Domains
     /// <summary>
     /// Definição da classe Curso 
     /// </summary>
-    public class Curso
+    public class Curso 
     //PK
     {
         [Key]

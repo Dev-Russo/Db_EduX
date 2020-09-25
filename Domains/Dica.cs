@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class Dica
+    public class Dica 
     {
         //PK
         [Key]

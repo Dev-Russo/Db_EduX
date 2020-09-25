@@ -7,27 +7,16 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class ObjetivoAluno
+    public class ObjetivoAluno : BaseDomain
     {
-        //PK
-        [Key]
-        public Guid IdObjetivoAluno { get; set; }
         public float Nota { get; set; }
         public DateTime DataAlcancado { get; set; }
-
-        /// <summary>
-        /// Criar novos Id
-        /// </summary>
-        public ObjetivoAluno()
-        {
-            IdObjetivoAluno = Guid.NewGuid();
-        }
 
         //FK : ID ALUNO TURMA E ID OBJETIVO
 
         public Guid IdAlunoTurma { get; set; }
-        [ForeignKey("IdObjetivo")]
-        public Objetivo Objetivo { get; set; }
+        [ForeignKey("IdAlunoTurma")]
+        public AlunoTurma AlunoTurma { get; set; }
 
         public Guid IdTurma { get; set; }
         [ForeignKey("IdTurma")]
