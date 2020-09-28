@@ -4,14 +4,16 @@ using EduX_API.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EduX_API.Migrations
 {
     [DbContext(typeof(EduXContext))]
-    partial class EduXContextModelSnapshot : ModelSnapshot
+    [Migration("20200925191357_Done")]
+    partial class Done
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

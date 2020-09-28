@@ -142,7 +142,7 @@ namespace EduX_API.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Logradourto")
+                    b.Property<string>("Logradouro")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

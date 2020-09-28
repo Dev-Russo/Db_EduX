@@ -8,15 +8,13 @@ namespace EduX_API.Interfaces
 {
     public interface ICurtidaRepository
     {
-        //Listar por Instituições
+        //Listar curtidas
         List<Curtida> Listar();
         //Faz a busca pelos ID
         Curtida BuscarPorId(Guid Id);
-        //Adiciona uma instituiçao
+        //Adiciona uma curtida
         void Adicionar(Curtida curtida);
-        //Edita a Instituiçao
-        void Editar(Curtida curtida);
-        //Remove a instituição deste ID
+        //Remove a curtida deste ID
         void Remover(Guid Id);
     }
 }

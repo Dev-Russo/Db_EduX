@@ -15,4 +15,3 @@ namespace EduX_API.Interface
             void Remover(Guid Id);
         }
     }
-}
