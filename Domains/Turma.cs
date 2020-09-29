@@ -4,21 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduX_API.Domains
 {
-    public class Turma
+    public class Turma : BaseDomain
     {
 
-        //PK
-        [Key]
-        public Guid IdTurma { get; set; }
-        public string Descricao { get; set; }
 
-        /// <summary>
-        /// Define a classe turma
-        /// </summary>
-        public Turma()
-        {
-            IdTurma = Guid.NewGuid();
-        }
+        public string Descricao { get; set; }
 
         //FK : ID CURSO
         public Guid IdCurso { get; set; }

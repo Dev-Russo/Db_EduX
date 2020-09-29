@@ -13,33 +13,33 @@ namespace EduX_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class PerfilController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IPerfilRepository _perfilRepository;
 
-        public UsuarioController()
+        public PerfilController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _perfilRepository = new PerfilRepository();
         }
 
-        // GET: api/<UsuarioController>
+        // GET: api/<PerfilController>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                //Listar os usuários
-                var usuario = _usuarioRepository.Listar();
+                //Listar os perfis
+                var perfil = _perfilRepository.Listar();
 
-                //Verifica se o usuário exista (ou não)
-                if (usuario.Count == 0)
+                //Verifica se o perfil existe (ou não)
+                if (perfil.Count == 0)
                     return NoContent();
 
-                //Caso exista retorna OK e os usuários
+                //Caso exista retorna OK e os perfis
                 return Ok(new
                 {
-                    totalCount = usuario.Count,
-                    data = usuario
+                    totalCount = perfil.Count,
+                    data = perfil
                 });
             }
             catch
@@ -55,21 +55,21 @@ namespace EduX_API.Controllers
         }
 
 
-        // GET api/<UsuarioController>/
+        // GET api/<PerfilController>/
         [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
             {
-                //Buscar usuário no repositório
-                Usuario usuario = _usuarioRepository.BuscarPorId(Id);
+                //Buscar perfil no repositório
+                Perfil perfil = _perfilRepository.BuscarPorId(Id);
 
-                //Verifica se o usuário existe
-                if (usuario == null)
+                //Verifica se o perfil existe
+                if (perfil == null)
                     return NotFound();
 
-                //Caso o usuário exista
-                return Ok(usuario);
+                //Caso o perfil exista
+                return Ok(perfil);
             }
             catch (Exception ex)
             {
@@ -78,40 +78,40 @@ namespace EduX_API.Controllers
             }
         }
 
-        // POST api/<UsuarioController>
+        // POST api/<PerfilController>
         [HttpPost]
-        public IActionResult Post([FromForm] Usuario usuario)
+        public IActionResult Post([FromForm] Perfil perfil)
         {
             try
             {
-                //Adicionar um usuário
-                _usuarioRepository.Adicionar(usuario);
+                //Adicionar um perfil
+                _perfilRepository.Adicionar(perfil);
 
-                //Retorna OK e os usuários
-                return Ok(usuario);
+                //Retorna OK e os perfis
+                return Ok(perfil);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Caso ocorra um erro retorna uma mensagem de erro
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<UsuarioController>/
+        // PUT api/<PerfilController>/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid Id, Usuario usuario)
+        public IActionResult Put(Guid Id, Perfil perfil)
         {
             try
             {
-                var usuarioTemp = _usuarioRepository.BuscarPorId(Id);
+                var perfilTemp = _perfilRepository.BuscarPorId(Id);
 
-                if (usuarioTemp == null)
+                if (perfilTemp == null)
                     return NotFound();
 
-                usuario.Id = Id;
-                _usuarioRepository.Editar(usuario);
+                perfil.Id = Id;
+                _perfilRepository.Editar(perfil);
 
-                return Ok(usuario);
+                return Ok(perfil);
             }
             catch (Exception ex)
             {
@@ -120,13 +120,13 @@ namespace EduX_API.Controllers
             }
         }
 
-        // DELETE api/<UsuarioController>/
+        // DELETE api/<PerfilController>/
         [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-                _usuarioRepository.Remover(Id);
+                _perfilRepository.Remover(Id);
                 return Ok(Id);
             }
             catch (Exception ex)

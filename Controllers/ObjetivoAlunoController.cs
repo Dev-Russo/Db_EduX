@@ -13,33 +13,33 @@ namespace EduX_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ObjetivoAlunoController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IObjetivoAlunoRepository _ObjetivoAlunoRepository;
 
-        public UsuarioController()
+        public ObjetivoAlunoController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _ObjetivoAlunoRepository = new ObjetivoAlunoRepository();
         }
 
-        // GET: api/<UsuarioController>
+        // GET: api/<ObjetivoAlunoController>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                //Listar os usuários
-                var usuario = _usuarioRepository.Listar();
+                //Listar os Objetivos
+                var objetivoAluno = _ObjetivoAlunoRepository.Listar();
 
-                //Verifica se o usuário exista (ou não)
-                if (usuario.Count == 0)
+                //Verifica se o objetivo existe (ou não)
+                if (objetivoAluno.Count == 0)
                     return NoContent();
 
-                //Caso exista retorna OK e os usuários
+                //Caso exista retorna OK e os objetivos
                 return Ok(new
                 {
-                    totalCount = usuario.Count,
-                    data = usuario
+                    totalCount = objetivoAluno.Count,
+                    data = objetivoAluno
                 });
             }
             catch
@@ -55,21 +55,21 @@ namespace EduX_API.Controllers
         }
 
 
-        // GET api/<UsuarioController>/
+        // GET api/<ObjetivoAlunoController>/
         [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
             {
-                //Buscar usuário no repositório
-                Usuario usuario = _usuarioRepository.BuscarPorId(Id);
+                //Buscar objetivo no repositório
+                ObjetivoAluno objetivoAluno = _ObjetivoAlunoRepository.BuscarPorId(Id);
 
-                //Verifica se o usuário existe
-                if (usuario == null)
+                //Verifica se o objetivo existe
+                if (objetivoAluno == null)
                     return NotFound();
 
-                //Caso o usuário exista
-                return Ok(usuario);
+                //Caso o objetivo exista
+                return Ok(objetivoAluno);
             }
             catch (Exception ex)
             {
@@ -78,40 +78,40 @@ namespace EduX_API.Controllers
             }
         }
 
-        // POST api/<UsuarioController>
+        // POST api/<ObjetivoAlunoController>
         [HttpPost]
-        public IActionResult Post([FromForm] Usuario usuario)
+        public IActionResult Post([FromForm] ObjetivoAluno objetivoAluno)
         {
             try
             {
-                //Adicionar um usuário
-                _usuarioRepository.Adicionar(usuario);
+                //Adicionar um objetivo
+                _ObjetivoAlunoRepository.Adicionar(objetivoAluno);
 
-                //Retorna OK e os usuários
-                return Ok(usuario);
+                //Retorna OK e os objetivos
+                return Ok(objetivoAluno);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Caso ocorra um erro retorna uma mensagem de erro
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<UsuarioController>/
+        // PUT api/<ObjetivoAlunoController>/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid Id, Usuario usuario)
+        public IActionResult Put(Guid Id, ObjetivoAluno objetivoAluno)
         {
             try
             {
-                var usuarioTemp = _usuarioRepository.BuscarPorId(Id);
+                var ObjAluTemp = _ObjetivoAlunoRepository.BuscarPorId(Id);
 
-                if (usuarioTemp == null)
+                if (ObjAluTemp == null)
                     return NotFound();
 
-                usuario.Id = Id;
-                _usuarioRepository.Editar(usuario);
+                objetivoAluno.Id = Id;
+                _ObjetivoAlunoRepository.Editar(objetivoAluno);
 
-                return Ok(usuario);
+                return Ok(objetivoAluno);
             }
             catch (Exception ex)
             {
@@ -120,13 +120,13 @@ namespace EduX_API.Controllers
             }
         }
 
-        // DELETE api/<UsuarioController>/
+        // DELETE api/<ObjetivoAlunoController>/
         [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-                _usuarioRepository.Remover(Id);
+                _ObjetivoAlunoRepository.Remover(Id);
                 return Ok(Id);
             }
             catch (Exception ex)

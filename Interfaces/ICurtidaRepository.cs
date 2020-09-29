@@ -12,6 +12,8 @@ namespace EduX_API.Interfaces
         List<Curtida> Listar();
         //Faz a busca pelos ID
         Curtida BuscarPorId(Guid Id);
+        //Listar as curtidas por usuário
+        List<Curtida> ListarPorUsuario(Guid Id);
         //Adiciona uma curtida
         void Adicionar(Curtida curtida);
         //Remove a curtida deste ID

@@ -46,7 +46,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                Objetivo objetivo1 = _ctx.Objetivo.Find(objetivo.IdObjetivo);
+                Objetivo objetivo1 = _ctx.Objetivo.Find(objetivo.Id);
                 if (objetivo1 == null)
                     throw new Exception("Objetivo não encontrado.");
 

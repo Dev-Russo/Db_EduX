@@ -7,17 +7,10 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class Perfil
+    public class Perfil : BaseDomain
     {
-        //PK
-        [Key]
-        public Guid IdPerfil { get; set; }
         [Column(TypeName = "varchar(50)")]
         public string Permissao { get; set; }
 
-        public Perfil()
-        {
-            IdPerfil = Guid.NewGuid();
-        }
     }
 }

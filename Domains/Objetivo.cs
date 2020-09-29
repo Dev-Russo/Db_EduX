@@ -6,24 +6,11 @@ using System.Text;
 
 namespace EduX_API.Domains
 {
-    /// <summary>
-    /// Define a classe Objetivo 
-    /// </summary>
 
-    public class Objetivo
+    public class Objetivo : BaseDomain
 
     {
-        [Key]
-        public Guid IdObjetivo { get; set; }
         public string Descricao { get; set; }
-
-        /// <summary>
-        /// Define a classe objetivo
-        /// </summary>
-        public Objetivo()
-        {
-            IdObjetivo = Guid.NewGuid();
-        }
 
         //FK em Categoria 
         public Guid IdCategoria { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EduX_API.Domains;
+using EduX_API.Interface;
 using EduX_API.Interfaces;
 using EduX_API.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,33 +14,33 @@ namespace EduX_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class TurmaController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly ITurmaRepository _turmaRepository;
 
-        public UsuarioController()
+        public TurmaController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _turmaRepository = new TurmaRepository();
         }
 
-        // GET: api/<UsuarioController>
+        // GET: api/<TurmaController>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                //Listar os usuários
-                var usuario = _usuarioRepository.Listar();
+                //Listar as turmas
+                var turma = _turmaRepository.Listar();
 
-                //Verifica se o usuário exista (ou não)
-                if (usuario.Count == 0)
+                //Verifica se a turma existe (ou não)
+                if (turma.Count == 0)
                     return NoContent();
 
-                //Caso exista retorna OK e os usuários
+                //Caso exista retorna OK e as turmas
                 return Ok(new
                 {
-                    totalCount = usuario.Count,
-                    data = usuario
+                    totalCount = turma.Count,
+                    data = turma
                 });
             }
             catch
@@ -55,21 +56,21 @@ namespace EduX_API.Controllers
         }
 
 
-        // GET api/<UsuarioController>/
+        // GET api/<TurmaController>/
         [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
             {
-                //Buscar usuário no repositório
-                Usuario usuario = _usuarioRepository.BuscarPorId(Id);
+                //Buscar turma no repositório
+                Turma turma = _turmaRepository.BuscarPorId(Id);
 
-                //Verifica se o usuário existe
-                if (usuario == null)
+                //Verifica se a turma existe existe
+                if (turma == null)
                     return NotFound();
 
-                //Caso o usuário exista
-                return Ok(usuario);
+                //Caso a turma exista
+                return Ok(turma);
             }
             catch (Exception ex)
             {
@@ -78,40 +79,40 @@ namespace EduX_API.Controllers
             }
         }
 
-        // POST api/<UsuarioController>
+        // POST api/<TurmaController>
         [HttpPost]
-        public IActionResult Post([FromForm] Usuario usuario)
+        public IActionResult Post([FromForm] Turma turma)
         {
             try
             {
-                //Adicionar um usuário
-                _usuarioRepository.Adicionar(usuario);
+                //Adicionar uma turma
+                _turmaRepository.Adicionar(turma);
 
-                //Retorna OK e os usuários
-                return Ok(usuario);
+                //Retorna OK e as turmas
+                return Ok(turma);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Caso ocorra um erro retorna uma mensagem de erro
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<UsuarioController>/
+        // PUT api/<TurmaController>/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid Id, Usuario usuario)
+        public IActionResult Put(Guid Id, Turma turma)
         {
             try
             {
-                var usuarioTemp = _usuarioRepository.BuscarPorId(Id);
+                var turmaTemp = _turmaRepository.BuscarPorId(Id);
 
-                if (usuarioTemp == null)
+                if (turmaTemp == null)
                     return NotFound();
 
-                usuario.Id = Id;
-                _usuarioRepository.Editar(usuario);
+                turmaTemp.Id = Id;
+                _turmaRepository.Editar(turma);
 
-                return Ok(usuario);
+                return Ok(turma);
             }
             catch (Exception ex)
             {
@@ -126,7 +127,7 @@ namespace EduX_API.Controllers
         {
             try
             {
-                _usuarioRepository.Remover(Id);
+                _turmaRepository.Remover(Id);
                 return Ok(Id);
             }
             catch (Exception ex)

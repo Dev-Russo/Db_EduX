@@ -46,7 +46,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                Curso curso1 = _ctx.Curso.Find(curso.IdCurso);
+                Curso curso1 = _ctx.Curso.Find(curso.Id);
                 if (curso1 == null)
                     throw new Exception("Curso não encontrado");
 

@@ -6,24 +6,12 @@ using System.Text;
 
 namespace EduX_API.Domains
 {
-    /// <summary>
-    /// Definição da classe Curso 
-    /// </summary>
-    public class Curso 
-    //PK
+    public class Curso : BaseDomain
     {
-        [Key]
-        public Guid IdCurso { get; set; }
+
         [Required]
         public string Titulo { get; set; }
 
-        /// <summary>
-        /// Criação do Id 
-        /// </summary>
-        public Curso()
-        {
-            IdCurso = Guid.NewGuid();
-        }
 
         //FK: ID INSTITUIÇÃO
         public Guid IdInstituicao { get; set; }

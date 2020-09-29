@@ -13,33 +13,33 @@ namespace EduX_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly ICategoriaRepository _categoriaRepository;
 
-        public UsuarioController()
+        public CategoriaController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _categoriaRepository = new CategoriaRepository();
         }
 
-        // GET: api/<UsuarioController>
+        // GET: api/<CategoriaController>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                //Listar os usuários
-                var usuario = _usuarioRepository.Listar();
+                //Listar as categorias
+                var categoria = _categoriaRepository.Listar();
 
-                //Verifica se o usuário exista (ou não)
-                if (usuario.Count == 0)
+                //Verifica se a categoria existe (ou não)
+                if (categoria.Count == 0)
                     return NoContent();
 
-                //Caso exista retorna OK e os usuários
+                //Caso exista retorna OK e as categorias
                 return Ok(new
                 {
-                    totalCount = usuario.Count,
-                    data = usuario
+                    totalCount = categoria.Count,
+                    data = categoria
                 });
             }
             catch
@@ -55,21 +55,21 @@ namespace EduX_API.Controllers
         }
 
 
-        // GET api/<UsuarioController>/
+        // GET api/<CategoriaController>/
         [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
             {
-                //Buscar usuário no repositório
-                Usuario usuario = _usuarioRepository.BuscarPorId(Id);
+                //Buscar categoria no repositório
+                Categoria categoria = _categoriaRepository.BuscarPorId(Id);
 
-                //Verifica se o usuário existe
-                if (usuario == null)
+                //Verifica se  existe a categoria
+                if (categoria == null)
                     return NotFound();
 
-                //Caso o usuário exista
-                return Ok(usuario);
+                //Caso a categoria exista
+                return Ok(categoria);
             }
             catch (Exception ex)
             {
@@ -78,40 +78,40 @@ namespace EduX_API.Controllers
             }
         }
 
-        // POST api/<UsuarioController>
+        // POST api/<CategoriaController>
         [HttpPost]
-        public IActionResult Post([FromForm] Usuario usuario)
+        public IActionResult Post([FromForm] Categoria categoria)
         {
             try
             {
-                //Adicionar um usuário
-                _usuarioRepository.Adicionar(usuario);
+                //Adicionar uma categoria
+                _categoriaRepository.Adicionar(categoria);
 
-                //Retorna OK e os usuários
-                return Ok(usuario);
+                //Retorna OK e as categorias
+                return Ok(categoria);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Caso ocorra um erro retorna uma mensagem de erro
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<UsuarioController>/
+        // PUT api/<CategoriaController>/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid Id, Usuario usuario)
+        public IActionResult Put(Guid Id, Categoria categoria)
         {
             try
             {
-                var usuarioTemp = _usuarioRepository.BuscarPorId(Id);
+                var categoriaTemp = _categoriaRepository.BuscarPorId(Id);
 
-                if (usuarioTemp == null)
+                if (categoriaTemp == null)
                     return NotFound();
 
-                usuario.Id = Id;
-                _usuarioRepository.Editar(usuario);
+                categoria.Id = Id;
+                _categoriaRepository.Editar(categoria);
 
-                return Ok(usuario);
+                return Ok(categoria);
             }
             catch (Exception ex)
             {
@@ -120,13 +120,13 @@ namespace EduX_API.Controllers
             }
         }
 
-        // DELETE api/<UsuarioController>/
+        // DELETE api/<CategoriaController>/
         [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-                _usuarioRepository.Remover(Id);
+                _categoriaRepository.Remover(Id);
                 return Ok(Id);
             }
             catch (Exception ex)

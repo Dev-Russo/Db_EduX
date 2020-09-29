@@ -46,7 +46,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                Turma turma1 = _ctx.Turma.Find(turma.IdTurma);
+                Turma turma1 = _ctx.Turma.Find(turma.Id);
                 if (turma1 == null)
                     throw new Exception("Turma não encontrada");
 

@@ -13,33 +13,33 @@ namespace EduX_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class CursoController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly ICursoRepository _cursoRepository;
 
-        public UsuarioController()
+        public CursoController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _cursoRepository = new CursoRepository();
         }
 
-        // GET: api/<UsuarioController>
+        // GET: api/<CursoController>
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                //Listar os usuários
-                var usuario = _usuarioRepository.Listar();
+                //Listar os cursos
+                var curso = _cursoRepository.Listar();
 
-                //Verifica se o usuário exista (ou não)
-                if (usuario.Count == 0)
+                //Verifica se o curso existe (ou não)
+                if (curso.Count == 0)
                     return NoContent();
 
                 //Caso exista retorna OK e os usuários
                 return Ok(new
                 {
-                    totalCount = usuario.Count,
-                    data = usuario
+                    totalCount = curso.Count,
+                    data = curso
                 });
             }
             catch
@@ -55,21 +55,21 @@ namespace EduX_API.Controllers
         }
 
 
-        // GET api/<UsuarioController>/
+        // GET api/<CursoController>/
         [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
             {
-                //Buscar usuário no repositório
-                Usuario usuario = _usuarioRepository.BuscarPorId(Id);
+                //Buscar cursi no repositório
+                Curso curso = _cursoRepository.BuscarPorId(Id);
 
-                //Verifica se o usuário existe
-                if (usuario == null)
+                //Verifica se o curso existe
+                if (curso == null)
                     return NotFound();
 
-                //Caso o usuário exista
-                return Ok(usuario);
+                //Caso o curso exista
+                return Ok(curso);
             }
             catch (Exception ex)
             {
@@ -78,40 +78,40 @@ namespace EduX_API.Controllers
             }
         }
 
-        // POST api/<UsuarioController>
+        // POST api/<CursoController>
         [HttpPost]
-        public IActionResult Post([FromForm] Usuario usuario)
+        public IActionResult Post([FromForm] Curso curso)
         {
             try
             {
-                //Adicionar um usuário
-                _usuarioRepository.Adicionar(usuario);
+                //Adicionar um curso
+                _cursoRepository.Adicionar(curso);
 
-                //Retorna OK e os usuários
-                return Ok(usuario);
+                //Retorna OK e os cursos
+                return Ok(curso);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 //Caso ocorra um erro retorna uma mensagem de erro
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT api/<UsuarioController>/
+        // PUT api/<CursoController>/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid Id, Usuario usuario)
+        public IActionResult Put(Guid Id, Curso curso)
         {
             try
             {
-                var usuarioTemp = _usuarioRepository.BuscarPorId(Id);
+                var cursoTemp = _cursoRepository.BuscarPorId(Id);
 
-                if (usuarioTemp == null)
+                if (cursoTemp == null)
                     return NotFound();
 
-                usuario.Id = Id;
-                _usuarioRepository.Editar(usuario);
+                curso.Id = Id;
+                _cursoRepository.Editar(curso);
 
-                return Ok(usuario);
+                return Ok(curso);
             }
             catch (Exception ex)
             {
@@ -120,13 +120,13 @@ namespace EduX_API.Controllers
             }
         }
 
-        // DELETE api/<UsuarioController>/
+        // DELETE api/<CursoController>/
         [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-                _usuarioRepository.Remover(Id);
+                _cursoRepository.Remover(Id);
                 return Ok(Id);
             }
             catch (Exception ex)
