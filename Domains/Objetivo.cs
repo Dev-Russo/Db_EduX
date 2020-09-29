@@ -14,7 +14,7 @@ namespace EduX_API.Domains
 
         //FK em Categoria 
         public Guid IdCategoria { get; set; }
-        [ForeignKey("IdCategoria")]
+        [ForeignKey("Id")]
         public Categoria Categoria { get; set; }
     }
 

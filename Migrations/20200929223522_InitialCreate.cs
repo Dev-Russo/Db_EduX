@@ -8,22 +8,22 @@ namespace EduX_API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categoria",
+                name: "Categorias",
                 columns: table => new
                 {
-                    IdCategoria = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Tipo = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.IdCategoria);
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Instituicao",
                 columns: table => new
                 {
-                    IdInstituicao = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Nome = table.Column<string>(nullable: false),
                     Logradouro = table.Column<string>(nullable: false),
                     Número = table.Column<int>(nullable: false),
@@ -35,37 +35,37 @@ namespace EduX_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Instituicao", x => x.IdInstituicao);
+                    table.PrimaryKey("PK_Instituicao", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Perfil",
                 columns: table => new
                 {
-                    IdPerfil = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Permissao = table.Column<string>(type: "varchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Perfil", x => x.IdPerfil);
+                    table.PrimaryKey("PK_Perfil", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Objetivo",
                 columns: table => new
                 {
-                    IdObjetivo = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Descricao = table.Column<string>(nullable: true),
                     IdCategoria = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Objetivo", x => x.IdObjetivo);
+                    table.PrimaryKey("PK_Objetivo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Objetivo_Categoria_IdCategoria",
-                        column: x => x.IdCategoria,
-                        principalTable: "Categoria",
-                        principalColumn: "IdCategoria",
+                        name: "FK_Objetivo_Categorias_Id",
+                        column: x => x.Id,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -73,18 +73,18 @@ namespace EduX_API.Migrations
                 name: "Curso",
                 columns: table => new
                 {
-                    IdCurso = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Titulo = table.Column<string>(nullable: false),
                     IdInstituicao = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Curso", x => x.IdCurso);
+                    table.PrimaryKey("PK_Curso", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Curso_Instituicao_IdInstituicao",
-                        column: x => x.IdInstituicao,
+                        name: "FK_Curso_Instituicao_Id",
+                        column: x => x.Id,
                         principalTable: "Instituicao",
-                        principalColumn: "IdInstituicao",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -92,7 +92,7 @@ namespace EduX_API.Migrations
                 name: "Usuario",
                 columns: table => new
                 {
-                    IdUsuario = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Nome = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     Senha = table.Column<string>(nullable: false),
@@ -102,12 +102,12 @@ namespace EduX_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Usuario_Perfil_IdPerfil",
-                        column: x => x.IdPerfil,
+                        name: "FK_Usuario_Perfil_Id",
+                        column: x => x.Id,
                         principalTable: "Perfil",
-                        principalColumn: "IdPerfil",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -115,18 +115,18 @@ namespace EduX_API.Migrations
                 name: "Turma",
                 columns: table => new
                 {
-                    IdTurma = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Descricao = table.Column<string>(nullable: true),
                     IdCurso = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Turma", x => x.IdTurma);
+                    table.PrimaryKey("PK_Turma", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Turma_Curso_IdCurso",
                         column: x => x.IdCurso,
                         principalTable: "Curso",
-                        principalColumn: "IdCurso",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -134,19 +134,19 @@ namespace EduX_API.Migrations
                 name: "Dica",
                 columns: table => new
                 {
-                    IdDica = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Texto = table.Column<string>(type: "varchar(255)", nullable: true),
                     Imagem = table.Column<string>(type: "varchar(255)", nullable: true),
                     IdUsuario = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dica", x => x.IdDica);
+                    table.PrimaryKey("PK_Dica", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dica_Usuario_IdUsuario",
-                        column: x => x.IdUsuario,
+                        name: "FK_Dica_Usuario_Id",
+                        column: x => x.Id,
                         principalTable: "Usuario",
-                        principalColumn: "IdUsuario",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -154,53 +154,25 @@ namespace EduX_API.Migrations
                 name: "AlunoTurma",
                 columns: table => new
                 {
-                    IdAlunoTurma = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Matricula = table.Column<string>(nullable: false),
                     IdUsuario = table.Column<Guid>(nullable: false),
                     IdTurma = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AlunoTurma", x => x.IdAlunoTurma);
+                    table.PrimaryKey("PK_AlunoTurma", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AlunoTurma_Turma_IdTurma",
                         column: x => x.IdTurma,
                         principalTable: "Turma",
-                        principalColumn: "IdTurma",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AlunoTurma_Usuario_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
-                        principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ObjetivoAluno",
-                columns: table => new
-                {
-                    IdObjetivoAluno = table.Column<Guid>(nullable: false),
-                    Nota = table.Column<float>(nullable: false),
-                    DataAlcancado = table.Column<DateTime>(nullable: false),
-                    IdAlunoTurma = table.Column<Guid>(nullable: false),
-                    IdObjetivo = table.Column<Guid>(nullable: true),
-                    IdTurma = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ObjetivoAluno", x => x.IdObjetivoAluno);
-                    table.ForeignKey(
-                        name: "FK_ObjetivoAluno_Objetivo_IdObjetivo",
-                        column: x => x.IdObjetivo,
-                        principalTable: "Objetivo",
-                        principalColumn: "IdObjetivo",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ObjetivoAluno_Turma_IdTurma",
-                        column: x => x.IdTurma,
-                        principalTable: "Turma",
-                        principalColumn: "IdTurma",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -208,25 +180,25 @@ namespace EduX_API.Migrations
                 name: "ProfessorTurma",
                 columns: table => new
                 {
-                    IdProfessorTurma = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     Descricao = table.Column<string>(nullable: true),
                     IdUsuario = table.Column<Guid>(nullable: false),
                     IdTurma = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProfessorTurma", x => x.IdProfessorTurma);
+                    table.PrimaryKey("PK_ProfessorTurma", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProfessorTurma_Turma_IdTurma",
-                        column: x => x.IdTurma,
+                        name: "FK_ProfessorTurma_Turma_Id",
+                        column: x => x.Id,
                         principalTable: "Turma",
-                        principalColumn: "IdTurma",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProfessorTurma_Usuario_IdUsuario",
-                        column: x => x.IdUsuario,
+                        name: "FK_ProfessorTurma_Usuario_Id",
+                        column: x => x.Id,
                         principalTable: "Usuario",
-                        principalColumn: "IdUsuario",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -234,25 +206,55 @@ namespace EduX_API.Migrations
                 name: "Curtida",
                 columns: table => new
                 {
-                    IdCurtida = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     IdUsuario = table.Column<Guid>(nullable: false),
-                    IdDica = table.Column<Guid>(nullable: false)
+                    IdDica = table.Column<Guid>(nullable: false),
+                    DicaId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Curtida", x => x.IdCurtida);
+                    table.PrimaryKey("PK_Curtida", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Curtida_Dica_IdDica",
-                        column: x => x.IdDica,
+                        name: "FK_Curtida_Dica_DicaId",
+                        column: x => x.DicaId,
                         principalTable: "Dica",
-                        principalColumn: "IdDica",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Curtida_Usuario_IdUsuario",
-                        column: x => x.IdUsuario,
+                        name: "FK_Curtida_Dica_Id",
+                        column: x => x.Id,
+                        principalTable: "Dica",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Curtida_Usuario_Id",
+                        column: x => x.Id,
                         principalTable: "Usuario",
-                        principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ObjetivoAluno",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Nota = table.Column<float>(nullable: false),
+                    DataAlcancado = table.Column<DateTime>(nullable: false),
+                    IdAlunoTurma = table.Column<Guid>(nullable: false),
+                    IdTurma = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ObjetivoAluno", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ObjetivoAluno_AlunoTurma_Id",
+                        column: x => x.Id,
+                        principalTable: "AlunoTurma",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ObjetivoAluno_Turma_Id",
+                        column: x => x.Id,
+                        principalTable: "Turma",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -266,68 +268,23 @@ namespace EduX_API.Migrations
                 column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Curso_IdInstituicao",
-                table: "Curso",
-                column: "IdInstituicao");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Curtida_IdDica",
+                name: "IX_Curtida_DicaId",
                 table: "Curtida",
-                column: "IdDica");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Curtida_IdUsuario",
-                table: "Curtida",
-                column: "IdUsuario");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Dica_IdUsuario",
-                table: "Dica",
-                column: "IdUsuario");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Objetivo_IdCategoria",
-                table: "Objetivo",
-                column: "IdCategoria");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ObjetivoAluno_IdObjetivo",
-                table: "ObjetivoAluno",
-                column: "IdObjetivo");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ObjetivoAluno_IdTurma",
-                table: "ObjetivoAluno",
-                column: "IdTurma");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProfessorTurma_IdTurma",
-                table: "ProfessorTurma",
-                column: "IdTurma");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProfessorTurma_IdUsuario",
-                table: "ProfessorTurma",
-                column: "IdUsuario");
+                column: "DicaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Turma_IdCurso",
                 table: "Turma",
                 column: "IdCurso");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuario_IdPerfil",
-                table: "Usuario",
-                column: "IdPerfil");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AlunoTurma");
+                name: "Curtida");
 
             migrationBuilder.DropTable(
-                name: "Curtida");
+                name: "Objetivo");
 
             migrationBuilder.DropTable(
                 name: "ObjetivoAluno");
@@ -339,16 +296,16 @@ namespace EduX_API.Migrations
                 name: "Dica");
 
             migrationBuilder.DropTable(
-                name: "Objetivo");
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
+                name: "AlunoTurma");
 
             migrationBuilder.DropTable(
                 name: "Turma");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
-
-            migrationBuilder.DropTable(
-                name: "Categoria");
 
             migrationBuilder.DropTable(
                 name: "Curso");

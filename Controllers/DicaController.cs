@@ -85,7 +85,7 @@ namespace EduX_API.Controllers
                 {
                     return NoContent();
                 }
-                dica.IdDica = Id;
+                dica.Id = Id;
                 _dicaRepository.Editar(dica);
                 return Ok(dica);
             }

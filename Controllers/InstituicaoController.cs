@@ -45,7 +45,7 @@ namespace EduX_API.Controllers
             }
         }
         //Buscar por ID
-        [HttpGet]
+        [HttpGet("{Id}")]
         public IActionResult Get(Guid Id)
         {
             try
@@ -70,7 +70,8 @@ namespace EduX_API.Controllers
             }
         }
         //Buscar por nome :)
-        [HttpGet]
+        [HttpGet("GetByNome/{Id}")]
+        
         public IActionResult GetByNome(Guid Id)
         {
             try
@@ -131,7 +132,6 @@ namespace EduX_API.Controllers
                 {
                     return NotFound();
                 }
-                instituicao.IdInstituicao = Id;
                 _instituicaoRepository.Editar(instituicao);
                 return Ok(instituicao);
             }

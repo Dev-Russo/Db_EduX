@@ -15,7 +15,7 @@ namespace EduX_API.Domains
 
         //FK: ID INSTITUIÇÃO
         public Guid IdInstituicao { get; set; }
-        [ForeignKey("IdInstituicao")]
+        [ForeignKey("Id")]
         public Instituicao Instituicao { get; set; }
     }
 }

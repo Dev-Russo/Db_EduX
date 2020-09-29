@@ -35,7 +35,7 @@ namespace EduX_API.Repositories
             try
             {
                 //Ultilização de clausula where com expressão lambida.
-                return _ctx.Instituicao.Where(i => i.IdInstituicao == Id).FirstOrDefault();
+                return _ctx.Instituicao.Where(i => i.Id == Id).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace EduX_API.Repositories
             try
             {
                 //Atribuição por Objeto
-                Instituicao InstituicaoContexto = BuscarPorId(instituicao.IdInstituicao);
+                Instituicao InstituicaoContexto = BuscarPorId(instituicao.Id);
                 if (InstituicaoContexto == null)
                 {
                     throw new Exception("Essa instituição não existe");

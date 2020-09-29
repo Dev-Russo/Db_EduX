@@ -20,7 +20,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                _ctx.Categoria.Add(categoria);
+                _ctx.Categorias.Add(categoria);
                 _ctx.SaveChanges();
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                return _ctx.Categoria.Find(Id);
+                return _ctx.Categorias.Find(Id);
             }
             catch (Exception ex)
             {
@@ -46,13 +46,13 @@ namespace EduX_API.Repositories
         {
             try
             {
-                Categoria categoria1 = _ctx.Categoria.Find(categoria.Id);
+                Categoria categoria1 = _ctx.Categorias.Find(categoria.Id);
                 if (categoria1 == null)
                     throw new Exception("Categoria  não encontrada");
 
                 categoria1.Tipo = categoria.Tipo;
 
-                _ctx.Categoria.Update(categoria1);
+                _ctx.Categorias.Update(categoria1);
                 _ctx.SaveChanges();
             }
             catch (Exception ex)
@@ -66,7 +66,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                return _ctx.Categoria.ToList();
+                return _ctx.Categorias.ToList();
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace EduX_API.Repositories
         {
             try
             {
-                Categoria categoria1 = _ctx.Categoria.Find(Id);
+                Categoria categoria1 = _ctx.Categorias.Find(Id);
                 if (categoria1 == null)
                     throw new Exception("Categoria excluida com sucesso");
             }

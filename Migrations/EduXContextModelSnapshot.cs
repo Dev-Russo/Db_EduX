@@ -56,13 +56,12 @@ namespace EduX_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categoria");
+                    b.ToTable("Categorias");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Curso", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdInstituicao")
@@ -74,15 +73,15 @@ namespace EduX_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdInstituicao");
-
                     b.ToTable("Curso");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Curtida", b =>
                 {
-                    b.Property<Guid>("IdCurtida")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DicaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdDica")
@@ -91,19 +90,16 @@ namespace EduX_API.Migrations
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("IdCurtida");
+                    b.HasKey("Id");
 
-                    b.HasIndex("IdDica");
-
-                    b.HasIndex("IdUsuario");
+                    b.HasIndex("DicaId");
 
                     b.ToTable("Curtida");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Dica", b =>
                 {
-                    b.Property<Guid>("IdDica")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdUsuario")
@@ -115,16 +111,14 @@ namespace EduX_API.Migrations
                     b.Property<string>("Texto")
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("IdDica");
-
-                    b.HasIndex("IdUsuario");
+                    b.HasKey("Id");
 
                     b.ToTable("Dica");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Instituicao", b =>
                 {
-                    b.Property<Guid>("IdInstituicao")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -154,7 +148,7 @@ namespace EduX_API.Migrations
                     b.Property<string>("UF")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdInstituicao");
+                    b.HasKey("Id");
 
                     b.ToTable("Instituicao");
                 });
@@ -162,7 +156,6 @@ namespace EduX_API.Migrations
             modelBuilder.Entity("EduX_API.Domains.Objetivo", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descricao")
@@ -173,15 +166,12 @@ namespace EduX_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCategoria");
-
                     b.ToTable("Objetivo");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.ObjetivoAluno", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAlcancado")
@@ -198,23 +188,19 @@ namespace EduX_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdAlunoTurma");
-
-                    b.HasIndex("IdTurma");
-
                     b.ToTable("ObjetivoAluno");
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Perfil", b =>
                 {
-                    b.Property<Guid>("IdPerfil")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Permissao")
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("IdPerfil");
+                    b.HasKey("Id");
 
                     b.ToTable("Perfil");
                 });
@@ -222,7 +208,6 @@ namespace EduX_API.Migrations
             modelBuilder.Entity("EduX_API.Domains.ProfessorTurma", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descricao")
@@ -235,10 +220,6 @@ namespace EduX_API.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdTurma");
-
-                    b.HasIndex("IdUsuario");
 
                     b.ToTable("ProfessorTurma");
                 });
@@ -265,7 +246,6 @@ namespace EduX_API.Migrations
             modelBuilder.Entity("EduX_API.Domains.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCadastro")
@@ -291,8 +271,6 @@ namespace EduX_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdPerfil");
-
                     b.ToTable("Usuario");
                 });
 
@@ -315,23 +293,27 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.Instituicao", "Instituicao")
                         .WithMany()
-                        .HasForeignKey("IdInstituicao")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("EduX_API.Domains.Curtida", b =>
                 {
-                    b.HasOne("EduX_API.Domains.Dica", "Dica")
+                    b.HasOne("EduX_API.Domains.Dica", null)
                         .WithMany("Curtidas")
-                        .HasForeignKey("IdDica")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("DicaId");
+
+                    b.HasOne("EduX_API.Domains.Dica", "Dica")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("EduX_API.Domains.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -339,7 +321,7 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("IdUsuario")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -348,7 +330,7 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.Categoria", "Categoria")
                         .WithMany()
-                        .HasForeignKey("IdCategoria")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -357,14 +339,14 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.AlunoTurma", "AlunoTurma")
                         .WithMany()
-                        .HasForeignKey("IdAlunoTurma")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("EduX_API.Domains.Turma", "Turma")
                         .WithMany()
-                        .HasForeignKey("IdTurma")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -372,13 +354,13 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.Turma", "Turma")
                         .WithMany()
-                        .HasForeignKey("IdTurma")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EduX_API.Domains.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("IdUsuario")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -396,7 +378,7 @@ namespace EduX_API.Migrations
                 {
                     b.HasOne("EduX_API.Domains.Perfil", "Perfil")
                         .WithMany()
-                        .HasForeignKey("IdPerfil")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

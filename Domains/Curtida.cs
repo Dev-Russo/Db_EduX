@@ -7,28 +7,17 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class Curtida
+    public class Curtida : BaseDomain
     {
-        //PK
-        [Key]
-        public Guid IdCurtida { get; set; }
-
-        /// <summary>
-        /// Criar novos ID's
-        /// </summary>
-        public Curtida()
-        {
-            IdCurtida = Guid.NewGuid();
-        }
 
         //IdUsuario : FK
         public Guid IdUsuario { get; set; }
-        [ForeignKey("IdUsuario")]
+        [ForeignKey("Id")]
         public Usuario Usuario { get; set; } 
 
         //IdDica : FK
         public Guid IdDica { get; set; }
-        [ForeignKey("IdDica")]
+        [ForeignKey("Id")]
         public Dica Dica { get; set; }
 
     }

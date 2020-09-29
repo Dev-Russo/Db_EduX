@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace EduX_API.Domains
 {
-    public class Dica 
+    public class Dica : BaseDomain
     {
-        //PK
-        [Key]
-        public Guid IdDica { get; set; }
+        
         [Column(TypeName = "varchar(255)")]
         public string Texto { get; set; }
         [Column(TypeName = "varchar(255)")]
@@ -19,12 +17,12 @@ namespace EduX_API.Domains
 
         public Dica()
         {
-            IdDica = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         //IdUsuario : FK
         public Guid IdUsuario { get; set; }
-        [ForeignKey("IdUsuario")]
+        [ForeignKey("Id")]
         public Usuario Usuario { get; set; }
 
         public List<Curtida> Curtidas { get; set; }

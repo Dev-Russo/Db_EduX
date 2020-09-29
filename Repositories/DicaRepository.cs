@@ -48,7 +48,7 @@ namespace EduX_API.Repositories
             try
             {
                 //atribuição de objeto
-                Dica dicaContexto = BuscarPorId(dica.IdDica);
+                Dica dicaContexto = BuscarPorId(dica.Id);
                 if (dicaContexto == null)
                 {
                     throw new Exception("Dica não encontrada");

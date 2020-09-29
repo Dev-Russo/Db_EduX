@@ -24,7 +24,7 @@ namespace EduX_API.Domains
 
         //FK : ID PERFIL
         public Guid IdPerfil { get; set; }
-        [ForeignKey("IdPerfil")]
+        [ForeignKey("Id")]
         public Perfil Perfil { get; set; }
 
        // public List<Curtida> Curtidas { get; set; }
